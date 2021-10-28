@@ -1,0 +1,8 @@
+__pycache__
+__pycache__/*
+*/__pycache__
+config/variables.cnf
+static_in_env
+static_in_env/*
+.idea/
+users/Waste

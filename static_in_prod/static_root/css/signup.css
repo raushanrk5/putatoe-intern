@@ -1,0 +1,15 @@
+.slider_section {
+  height: calc(120px);
+  background-image: url(../images/slider-bg.jpg);
+  background-size: cover;
+}
+
+.slider_section .slider_container {
+  height: calc(120px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}

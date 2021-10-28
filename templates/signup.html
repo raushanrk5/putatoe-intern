@@ -1,0 +1,225 @@
+{% include "base_header.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Putatoe</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+</head>
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <img src="https://firebasestorage.googleapis.com/v0/b/putatoeapp/o/Raushan%20Kumar%2F1231594718906169?alt=media&token=b547709e-78c7-422e-b185-4e9cd0b5682c" alt="" />
+            <span>
+              Putatoe
+            </span>
+          </a>
+          <div class="contact_nav" id="">
+            <ul class="navbar-nav ">
+              <li class="nav-item">
+                <a class="nav-link" href="service.html">
+                  <img src="images/location.png" alt="" />
+                  <span>Location</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="service.html">
+                  <img src="images/call.png" alt="" />
+                  <span>Call : + 01 1234567890</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link font-weight-bold text-large" href="/login/"><span class="fas fa-sign-in-alt"></span><u><big>Login</big></u></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class=" slider_section">
+      <div class="container">
+        <div class="custom_nav2">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="d-flex  flex-column flex-lg-row align-items-center">
+                <ul class="navbar-nav  ">
+                  <li class="nav-item ">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about.html">About </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="service.html">Services </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                  </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </section>
+    {% block content %}
+    <div>
+        <form action="" name = "registerForm" method="post" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <div class="col-lg-8 col-md-8 col-md-offset-2 mx-auto text-center">
+                <div>
+                  <h2 class="font-weight-bold mb-5"><u>Register</u></h2>
+                    <div>
+<!--                        {% if error_message %}-->
+<!--                            <p class="bg-danger p-d ml-b">{{ error_message }}</p>-->
+<!--                        {% endif %}-->
+      <!-- Error Message-->
+                        {% if registered == True %}
+                            <h5 class ="text-danger">Your email is already registered with us!</h5>
+                        {% endif %}
+
+                        <div  class="form-group clearfix mb-3 mt-3">
+                          <h5 id = "error_msg" class ="text-danger"></h5>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <label for="emailId" class="col-md-4 control-label">Email<span class="text-red">*</span>:</label>
+                            <div class="col-md-5 mx-auto">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="mobileId" class="col-md-4 control-label">Mobile No<span class="text-red">*</span>:</label>
+                            <div class="col-md-5 mx-auto input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">+91</span>
+                                </div>
+                                {{ form.mobile_no }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="passwordId" class="col-md-4 control-label">Password<span class="text-red">*</span>:</label>
+                            <div class="col-md-5 mx-auto">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="rePasswordId" class="col-md-4 control-label">Confirm password:</label>
+                            <div class="col-md-5 mx-auto">
+                                {{ form.password_repeat }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mt-5 mx-auto">
+                          <button type="submit" id = "submit-button" value="Register"  class="btn btn-sm btn-block btn-success mb-5">Register</button>
+                        </div>
+
+                        <div class="col-md-5 mt-5 mb-4 mx-auto">
+                          <h6>Already a Member? <a href="/login/"><u>Login Now</u></a></h6>
+                        </div>
+
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Email Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <p>Please confirm your email address to complete the registration</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a href = "/login/"class="btn btn-primary">Ok</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+  <!-- footer section -->
+
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+
+  <script>
+    function openNav() {
+      document.getElementById("myNav").classList.toggle("menu_width");
+      document
+        .querySelector(".custom_menu-btn")
+        .classList.toggle("menu_btn-style");
+    }
+  </script>
+
+    <script type="text/javascript">
+
+    function validateForm() {
+      var error_msg = document.getElementById('error_msg');
+      var email_input = document.forms["registerForm"]["email"].value;
+      var mobile_input = document.forms["registerForm"]["mobile_no"].value
+      var password_input = document.forms["registerForm"]["password"].value;
+      var rePassword_input = document.forms["registerForm"]["password_repeat"].value;
+      if (email_input == "" || password_input == "" || rePassword_input == "" || mobile_input == ""){
+        error_msg.textContent = "Input fields must not be empty";
+        return false;
+      }
+      else
+      {
+        if(isNaN(mobile_input)){
+          error_msg.textContent = "Mobile number must be in digits";
+          return false;
+        }
+
+        else if(mobile_input.length != 10){
+          error_msg.textContent = "Mobile number must be of 10 digits";
+          return false;
+        }
+
+        else if(password_input.length < 8){
+          error_msg.textContent = "Password must be of atleast 8 characters";
+          return false;
+        }
+
+        else if (password_input != rePassword_input){
+          error_msg.textContent = "Both password field should match";
+          return false;
+        }
+
+        else {
+          $('#myModal').modal('toggle');
+          return true;
+        }
+      }
+    }
+    </script>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Animated Login Page</title>
+    <link rel="stylesheet" href="login_trial1.css">
+    <title></title>
+  </head>
+  <body>
+    <form class="box" action="index.html" method="post">
+      <h1>Login</h1>
+      <input id = "username" type="text" name="" value="" placeholder="Username">
+      <div id = "feedback"></div>
+      </div>
+      <input type="password" name="" value="" placeholder="Password">
+      <input type="submit" name="" value="Login">
+    </form>
+   <script type="text/javascript" src = "login_trial1.js">
+
+   </script>
+  </body>
+</html>
+
+login.js
+    function setup(){
+  var textInput;
+  textInput= document.getElementById('username');
+  textInput.focus();
+}
+
+function checkUserName(event){
+  var userName = el.value;
+  if(userName.length < 8){
+    elMsg.className = 'warning';
+    elMsg.textContent = 'Not long enough, yet.....';
+    elMsg.style.color="red";
+    event.preventDefault();
+  }
+  else{
+    elMsg.textContent = '';
+  }
+}
+
+function tipUserName(){
+  elMsg.className="tip";
+  elMsg.innerHTML = 'Username must be at least 8 characters';
+  elMsg.style.color = "#6f42c1";
+}
+
+var el = document.getElementById('username');
+var elMsg = document.getElementById('feedback');
+
+el.addEventListener('focus',tipUserName,false);
+el.addEventListener('blur',checkUserName,false);
+window.addEventListener('load',setup,false);
+
+signup.js
+   function setup(){
+  var textInput;
+  textInput= document.getElementById('username');
+  textInput.focus();
+}
+
+function checkMobile(event){
+  var userName = el.value;
+  if(userName.length < 10){
+    elMsg.className = 'warning';
+    elMsg.textContent = 'Mob. number must be exact 10 digits';
+    elMsg.style.color="red";
+    event.preventDefault();
+  }
+  else{
+    elMsg.textContent = '';
+  }
+}
+
+// function tipUserName(){
+//   elMsg.className="tip";
+//   elMsg.innerHTML = 'Username must be at least 8 characters';
+//   elMsg.style.color = "#6f42c1";
+// }
+
+var el = document.getElementById('mob');
+var elMsg = document.getElementById('feedback');
+
+//el.addEventListener('focus',tipUserName,false);
+el.addEventListener('blur',checkMobile,false);
+window.addEventListener('load',setup,false);
+
